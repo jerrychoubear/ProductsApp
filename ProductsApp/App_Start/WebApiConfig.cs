@@ -9,6 +9,8 @@ namespace ProductsApp
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors();
+
             // Web API 設定和服務
 
             // Web API 路由

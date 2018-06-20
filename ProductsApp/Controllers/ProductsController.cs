@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
+using System.Web.Mvc;
 using ProductsApp.Models;
 
 namespace ProductsApp.Controllers
 {
+    [EnableCors(origins: "http://localhost:1951", headers: "*", methods: "*")]
     public class ProductsController : ApiController
     {
         Product[] products = new Product[]
@@ -26,6 +29,12 @@ namespace ProductsApp.Controllers
             {
                 return NotFound();
             }
+            return Ok(product);
+        }
+
+        public IHttpActionResult PostProduct(int id)
+        {
+            var product = products.FirstOrDefault((p) => p.Id == id);
             return Ok(product);
         }
     }
